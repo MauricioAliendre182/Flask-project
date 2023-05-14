@@ -1,6 +1,5 @@
 from app.password import Password
 import os
-from dotenv import load_dotenv
 
 class Config:
     SECRET_KEY = Password().generate_password(10)

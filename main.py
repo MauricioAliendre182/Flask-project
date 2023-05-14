@@ -4,9 +4,7 @@ from app.modelsdb import db
 from app import create_app
 
 app = create_app()
-
 # Python variables
-todos = ["Buy coffe", "Store groceries", "Sleep early"]
 
 # Create the first Route
 @app.route('/')

@@ -1,7 +1,7 @@
 from . import greetings
 from flask import render_template, session, flash, redirect, url_for
 from flask_login import login_required, current_user
-from app.forms import ToDo, Delete
+from app.forms import ToDo
 from app.queries import get_user, insert_task, delete_task, get_tasks, update_task
 
 

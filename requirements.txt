@@ -21,6 +21,7 @@ mysqlclient==2.1.1
 packaging==23.1
 psycopg2-binary==2.9.6
 PyJWT==2.6.0
+python-dotenv==1.0.0
 SQLAlchemy==2.0.12
 typing-extensions==4.5.0
 visitor==0.1.3

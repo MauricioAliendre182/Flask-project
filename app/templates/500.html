@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+<!-- Create a new variable called macros which use macro.html -->
+{% import 'macros.html' as macros %}
+
+<!-- Inheritance -->
+{%block title %}
+    {{ super()}}
+|   Internal Server Error 
+{% endblock %}
+{% block content %}
+    <h1>Sorry! There is a problem with the server</h1>
+    <p>{{ error }}</p>
+{% endblock %}

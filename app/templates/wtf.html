@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+
+{% block title %}
+    {{ super() }} Welcome!
+{% endblock %}
+
+{% block content %}
+
+    {% if user_ip %}
+        <div class="container" style="text-align: center;">
+
+        <div style="margin-block: 32px">
+            <img
+                    style="max-width: 50%; align-content: center"
+                    src="{{ url_for('static',filename='images/AICDirt.png') }}"
+            >
+        </div>
+
+            <h1>Hello👋 {{ user_ip }} welcome to this page test</h1>
+            <h2>Keep learning! Do not forget it 🌌</h2>
+
+            <div class="container col-lg-4 col-md-4 col-sm-6">
+                <ul class="checkList">
+                    {% for todo in todos %}
+                        {{ macros.render_todo(todo) }}
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+    {% else %}
+        <a href="{{ url_for('index') }}">Ir a inicio</a>
+    {% endif %}
+{% endblock %}

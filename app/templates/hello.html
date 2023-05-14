@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+<!-- Create a new variable called macros which use macro.html -->
+{% import 'macros.html' as macros %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+<!-- Inheritance -->
+{%block title %}
+    {{ super()}}
+|   Welcome! 
+{% endblock %}
+
+{% block content %}
+    {% if username %}
+        <h1>Welcome, {{ username | capitalize }}</h1>
+    {% endif %}
+        <!-- Control Structures (Conditionals) -->
+    {% if user_ip %}
+    <!-- con la "doble llave", dentro de ella le puedes pasar variables desde main.py-->
+        <h3>Hello guest, your ip is : {{ user_ip }}</h3>
+    {% else %}
+        <a href="{{ url_for('index') }}">Go to Home</a>
+    {% endif %}
+    <div class="container">
+        <h2> Create a new task </h2>
+        {{ wtf.quick_form(todo_form,
+            button_map={'submit': 'btn btn-success'}
+            ) }}
+    </div>
+    <br>
+    <div class="container">
+        <h3 class="title">Tasks List</h3>
+        <div class="row">
+            <div class="col-md-12">
+                {% for task in todos %}
+                    {{ macros.render_task(task) }}
+                {% endfor %}
+                <br>
+            </div>
+        </div>
+    </div>
+    <br>
+{% endblock %}
+

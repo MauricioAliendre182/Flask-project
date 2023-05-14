@@ -1,0 +1,27 @@
+html * {
+    font-family: sans-serif;
+}
+img {
+    max-width: 30px;
+}
+body
+{
+    background-color: mistyrose;
+    color: black;
+    font-size: 20px;
+    font-family: Helvetica;
+}
+
+h3 {
+    text-align: center;
+    font-size: large;
+}
+
+.custom-inline {
+    display: inline-block;
+    margin-right: 2rem;
+}
+
+.mr-auto {
+    margin-right: auto;
+}

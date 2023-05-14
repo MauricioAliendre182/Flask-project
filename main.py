@@ -1,25 +1,38 @@
-from flask import Flask, request, make_response, redirect
+from flask import request, make_response, redirect, render_template, session
+import unittest
+from app.modelsdb import db
+from app import create_app
 
-# Create a new instance of Flask
-app = Flask(__name__)
+app = create_app()
 
+# Python variables
+todos = ["Buy coffe", "Store groceries", "Sleep early"]
 
 # Create the first Route
 @app.route('/')
 def index():
     user_ip = request.remote_addr
-    response = make_response(redirect('/hello'))
-    response.set_cookie("user_ip", user_ip)
+    response = make_response(redirect('/greetings/hello'))
+    # response.set_cookie("user_ip", user_ip)
+
+    #Instead of storing the ip in a cookie, we will store it in a session
+    session["user_ip"] = user_ip
     return response
 
+@app.cli.command()
+def test():
+    tests = unittest.TestLoader().discover("tests")
+    unittest.TextTestRunner().run(tests)
 
-@app.route('/hello')
-def hello():
-    # Ip of the user
-    user_ip = request.cookies.get('user_ip')
-    return {"Name": "Mauricio Aliendre",
-            "Age": 25,
-            "IP": user_ip}
+@app.errorhandler(404)
+def not_found(error):
+    return render_template('404.html', error=error)
+
+@app.errorhandler(500)
+def not_found(error):
+    return render_template('500.html', error=error)
 
 if __name__ == "__main__":
-    app.run(port=5500, debug=True)
+    with app.app_context():
+        db.create_all()
+    app.run()

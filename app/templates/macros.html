@@ -1,0 +1,26 @@
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% macro render_task(task) %}
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="custom-inline mr-auto p-2">
+                Task: {{ task.description }}
+            </div>
+            <div class="custom-inline p-2">
+                <span class="badge badge-primary badge-pill" style="font-size: 100%;">
+                    {% if task.done %}
+                        Done
+                    {% else %}
+                        To do
+                    {% endif %}
+                </span>
+            </div>
+            <div class="custom-inline p-2">
+                <a href="{{ url_for('greetings.delete', task_id=task.id) }}" class="btn btn-primary btn-lg">Delete</a>
+            </div>
+            <div class="custom-inline p-2">
+                <a href="{{ url_for('greetings.update', task_id=task.id, done=task.done) }}" class="btn btn-primary btn-lg">Update</a>
+            </div>
+        </li>
+    </ul>
+{% endmacro %}
